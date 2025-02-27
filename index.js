@@ -9,11 +9,16 @@ const cookieParser = require('cookie-parser');
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-  origin: ['https://cookies-auth-test.netlify.app'],
-  credentials: true
-}));
+// Configure CORS
+const corsOptions = {
+  origin: 'https://cookies-auth-test.netlify.app', // Explicitly allow your frontend origin
+  credentials: true, // Allow credentials (cookies, auth headers, etc.)
+  methods: ['GET', 'POST', 'OPTIONS'], // Specify allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'] // Specify allowed headers
+};
 
+// Apply CORS middleware
+app.use(cors(corsOptions));
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB Connected'))
