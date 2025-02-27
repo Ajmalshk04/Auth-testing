@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: ['https://auth-testing-b4ia.onrender.com'],
+  origin: ['https://dreamy-palmier-5b5309.netlify.app'],
   credentials: true
 }));
 
